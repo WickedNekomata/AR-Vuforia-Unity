@@ -7,9 +7,6 @@ public class BulletMover : MonoBehaviour
     #region PUBLIC_VARIABLES
     public float speed = 5.0f;
     public float lifeTime = 5.0f;
-
-    [HideInInspector]
-    public Vector3 direction = Vector3.zero;
     #endregion
 
     #region PRIVATE_VARIABLES
@@ -24,7 +21,7 @@ public class BulletMover : MonoBehaviour
             return;
         }
 
-        gameObject.transform.position += direction * speed * Time.deltaTime;
+        gameObject.transform.position += transform.forward * speed * Time.deltaTime;
 
         timer += Time.deltaTime;
     }

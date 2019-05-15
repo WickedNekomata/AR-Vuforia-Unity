@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
+    public GameObject map = null;
     public GameObject bulletPrefab = null;
     public GameObject otherPortal = null;
 
@@ -13,10 +14,7 @@ public class Teleport : MonoBehaviour
         {
             // Teleport the bullet the other portal
             Destroy(collider.gameObject);
-
-            GameObject bullet = Instantiate(bulletPrefab, otherPortal.transform.position, Quaternion.identity, transform.parent);
-            BulletMover bulletMover = bullet.GetComponent<BulletMover>();
-            bulletMover.direction = otherPortal.transform.forward;
+            Instantiate(bulletPrefab, otherPortal.transform.position, otherPortal.transform.rotation, map.transform);
         }
     }
 }
