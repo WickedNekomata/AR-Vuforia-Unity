@@ -7,7 +7,7 @@ public class Goal : MonoBehaviour
     public enum Player { Red, Blue };
     public Player player = Player.Red;
 
-    void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         if (LayerMask.LayerToName(collider.gameObject.layer) == "Bullet")
         {

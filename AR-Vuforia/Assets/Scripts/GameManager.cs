@@ -4,6 +4,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     #region PUBLIC_VARIABLES
+    public PortalMover redPortal = null;
+    public PortalMover bluePortal = null;
+
     public Text redPoints = null;
     public Text bluePoints = null;
     public Text redWins = null;
@@ -57,8 +60,25 @@ public class GameManager : MonoBehaviour
     private static GameManager gameManager = null;
     #endregion
 
-    GameManager()
+    private GameManager()
     {
         gameManager = this;
+    }
+
+    private void Awake()
+    {
+        int random = Random.Range(0, 2);
+        switch (random)
+        {
+            case 0:
+                redPortal.direction = PortalMover.Direction.Left;
+                bluePortal.direction = PortalMover.Direction.Right;
+                break;
+
+            case 1:
+                redPortal.direction = PortalMover.Direction.Right;
+                bluePortal.direction = PortalMover.Direction.Left;
+                break;
+        }
     }
 }
