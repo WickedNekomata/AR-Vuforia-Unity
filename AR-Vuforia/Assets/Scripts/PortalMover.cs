@@ -5,18 +5,43 @@ using UnityEngine;
 public class PortalMover : MonoBehaviour
 {
     #region PUBLIC_VARIABLES
-    public float speed = 3.0f;
-
     public GameObject thisPortal = null;
-    public GameObject otherPortal = null;
+    public GameObject spawnPoint = null;
 
     public enum Direction { Left, Right };
     [HideInInspector]
     public Direction direction = Direction.Left;
     #endregion
 
+    #region PRIVATE_VARIABLES
+    private float speed = 1.0f;
+    private float time = 2.0f;
+
+    private bool stop = false;
+    private float timer = 0.0f;
+    #endregion
+
     private void Update()
     {
+        if (stop)
+        {
+            if (timer >= time)
+            {
+                Teleport();
+
+                timer = 0.0f;
+
+                stop = false;
+                BulletMover.Call.gameObject.SetActive(true);
+
+                return;
+            }
+
+            timer += Time.deltaTime;
+
+            return;
+        }
+
         switch (direction)
         {
             case Direction.Left:
@@ -45,11 +70,19 @@ public class PortalMover : MonoBehaviour
                     break;
             }
         }
-        if (LayerMask.LayerToName(collision.gameObject.layer) == "Bullet")
+
+        if (collision.gameObject == BulletMover.Call.gameObject)
         {
-            // Teleport the bullet the other portal
-            collision.gameObject.transform.position = otherPortal.transform.position;
-            collision.gameObject.transform.rotation = otherPortal.transform.rotation;
+            stop = true;
+            BulletMover.Call.gameObject.SetActive(false);
         }
+    }
+
+    // Teleports the bullet the other portal
+    private void Teleport()
+    {
+        BulletMover.Call.gameObject.transform.position = spawnPoint.transform.position;
+        BulletMover.Call.gameObject.transform.rotation = Quaternion.LookRotation(-BulletMover.Call.transform.forward);
+        BulletMover.Call.speed += BulletMover.Call.increaseOverBound * 2.0f;
     }
 }

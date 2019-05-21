@@ -9,8 +9,10 @@ public class Goal : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (LayerMask.LayerToName(collision.gameObject.layer) == "Bullet")
+        if (collision.gameObject == BulletMover.Call.gameObject)
         {
+            Debug.Log("Goal!");
+
             switch (player)
             {
                 case Player.Red:

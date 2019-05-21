@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         {
             blueScore = value;
 
-            redPoints.text = blueScore.ToString();
+            bluePoints.text = blueScore.ToString();
 
             if (blueScore >= winScore)
             {

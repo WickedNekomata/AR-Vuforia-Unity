@@ -1,17 +1,28 @@
 ﻿using UnityEngine;
 
-public class ballPong : MonoBehaviour
+public class BulletMover : MonoBehaviour
 {
     public GameObject spawn;
     public GameObject wall1;
     public GameObject wall2;
 
-    Rigidbody rb;
-
     public float constantSpeed = 1.0f;
     public float increaseOverBound = 0.01f;
 
-    private float speed;
+    public static BulletMover Call
+    {
+        get { return bulletMover; }
+    }
+
+    [HideInInspector]
+    public float speed;
+
+    private static BulletMover bulletMover = null;
+
+    private BulletMover()
+    {
+        bulletMover = this;
+    }
 
     void Start()
     {
@@ -41,6 +52,7 @@ public class ballPong : MonoBehaviour
         }
         else if (LayerMask.LayerToName(collision.gameObject.layer) == "Goal")
         {
+            speed = constantSpeed;
             transform.position = spawn.transform.position;
             if (gameObject == wall1)
                 transform.rotation = Quaternion.LookRotation(wall1.transform.position - transform.position);
