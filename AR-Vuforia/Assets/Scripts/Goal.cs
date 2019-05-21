@@ -7,9 +7,9 @@ public class Goal : MonoBehaviour
     public enum Player { Red, Blue };
     public Player player = Player.Red;
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (LayerMask.LayerToName(collider.gameObject.layer) == "Bullet")
+        if (LayerMask.LayerToName(collision.gameObject.layer) == "Bullet")
         {
             switch (player)
             {
