@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="marker2" size="0.950000 0.950000" />
+    <ImageTarget name="marker1" size="0.950000 0.950000" />
+    <ImageTarget name="Augmented_reality_marker_QR" size="0.750000 0.750000" />
+  </Tracking>
+</QCARConfig>
