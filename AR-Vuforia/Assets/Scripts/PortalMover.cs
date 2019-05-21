@@ -29,12 +29,12 @@ public class PortalMover : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (LayerMask.LayerToName(collider.gameObject.layer) == "Obstacle")
+        if (LayerMask.LayerToName(collision.gameObject.layer) == "Obstacle")
         {
             // Change direction
-            switch(direction)
+            switch (direction)
             {
                 case Direction.Left:
                     direction = Direction.Right;
@@ -45,11 +45,11 @@ public class PortalMover : MonoBehaviour
                     break;
             }
         }
-        if (LayerMask.LayerToName(collider.gameObject.layer) == "Bullet")
+        if (LayerMask.LayerToName(collision.gameObject.layer) == "Bullet")
         {
             // Teleport the bullet the other portal
-            collider.gameObject.transform.position = otherPortal.transform.position;
-            collider.gameObject.transform.rotation = otherPortal.transform.rotation;
+            collision.gameObject.transform.position = otherPortal.transform.position;
+            collision.gameObject.transform.rotation = otherPortal.transform.rotation;
         }
     }
 }
