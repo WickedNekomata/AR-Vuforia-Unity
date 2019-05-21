@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
             {
                 accumulatedAngularVelocity += angle;
 
-                transform.rotation *= Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation *= Quaternion.AngleAxis(angle, Vector3.right);
             }
         }
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
             {
                 accumulatedAngularVelocity += angle;
 
-                transform.rotation *= Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation *= Quaternion.AngleAxis(angle, Vector3.right);
             }
         }
     }
