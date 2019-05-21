@@ -15,15 +15,25 @@ public class BulletMover : MonoBehaviour
     private float timer = 0.0f;
     #endregion
 
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = (transform.forward * speed);
+    }
+
     void Update()
     {
+        rb.velocity = speed * (rb.velocity.normalized);
+
         if (timer >= lifeTime)
         {
             Destroy(gameObject);
             return;
         }
 
-        gameObject.transform.position += transform.forward * speed * Time.deltaTime;
+        //gameObject.transform.position += transform.forward * speed * Time.deltaTime;
 
         timer += Time.deltaTime;
     }

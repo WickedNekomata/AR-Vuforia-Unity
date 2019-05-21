@@ -17,13 +17,13 @@ MonoBehaviour:
     ufoLicenseKey: QVhtQmY4Ly8vLy8vQUFBQUtFU3ZJRjhGNkUrNHJSTDZwMldIVktZWU9iZzQ4bElGTkhNaXN5aENWaGdESkJ5MmRDYTBlWVhmVnhwYmRtMjd3TkU3TXhkZnc5Qno1TGoxMW9OMUJ3bDk1Ly9XbXBkcnRqaFVZUityYThDZzNQd21lbk5XZm44UTY5b3RqT0JVMFJBQ0l5R0ZmbnM5M0xySTh1Ni8ySDFwTWpWZXdiaG9JOTBjQlcwSkZESjhJazh2QlBwR2lMcHQzdVlmV2o2Q2s4QnpFRjEwcEEwTS9kcjNESW9lb1BNazJjS1N6Ykx4TE5MVjM4MlNHRTE1dms3ZEh3bkNHWGorTFloK2laYkFOcmxEbWR4MFZHaVowMnB6bXMrbml5NmZxcE9ERFNKQklZRGx5U3ZBc0d2R2EwS01uOTFLM1Y0N1RFbko3bSsrVUF3VFFTYzNJV1grUkUwTTZBYlBQTUl2RlhhZmN6bkNqMXB0L2FPTW9rSWY=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
-    maxSimultaneousObjectTargets: 1
+    maxSimultaneousImageTargets: 3
+    maxSimultaneousObjectTargets: 3
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
     version: 8.0.10
-    eulaAcceptedVersions: '{"Values":["0.0","8.0"]}'
+    eulaAcceptedVersions: '{"Values":["7.1","0.0","8.0"]}'
   digitalEyewear:
     cameraOffset: 0.06
     distortionRenderingLayer: 31
