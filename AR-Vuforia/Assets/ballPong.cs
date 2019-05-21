@@ -2,8 +2,9 @@
 
 public class ballPong : MonoBehaviour
 {
-    GameObject wall1;
-    GameObject wall2;
+    public GameObject spawn;
+    public GameObject wall1;
+    public GameObject wall2;
 
     Rigidbody rb;
 
@@ -38,10 +39,14 @@ public class ballPong : MonoBehaviour
             Vector3 reflection = Vector3.Reflect(worldForward, collision.GetContact(0).normal);
             transform.rotation = Quaternion.LookRotation(reflection);
         }
-        else if (collision.gameObject.layer.Equals("Goal"))
+        else if (LayerMask.LayerToName(collision.gameObject.layer) == "Goal")
         {
-            transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-           // rb.AddForce(new Vector3(Random.Range(0.0f, 1.0f), 0.0f, Random.Range(0.0f, 1.0f) * constantSpeed), ForceMode.Impulse); speed = constantSpeed;
+            transform.position = spawn.transform.position;
+            if (gameObject == wall1)
+                transform.rotation = Quaternion.LookRotation(wall1.transform.position - transform.position);
+            else
+                transform.rotation = Quaternion.LookRotation(wall2.transform.position - transform.position);
+            // rb.AddForce(new Vector3(Random.Range(0.0f, 1.0f), 0.0f, Random.Range(0.0f, 1.0f) * constantSpeed), ForceMode.Impulse); speed = constantSpeed;
         }
     }
 }
