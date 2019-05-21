@@ -24,21 +24,24 @@ public class ballPong : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer.Equals("Player"))
+        if (LayerMask.LayerToName(collision.gameObject.layer) == "Player")
         {
             speed += increaseOverBound;
-            Vector3 reflection = Vector3.Reflect(transform.forward, transform.InverseTransformDirection(collision.GetContact(0).normal));
-            transform.rotation = Quaternion.LookRotation(reflection);
+            Vector3 worldForward = (transform.forward);
+            Vector3 reflection = Vector3.Reflect(worldForward, collision.GetContact(0).normal);
+            
+            transform.rotation = Quaternion.LookRotation((reflection));
         }
-        else if (collision.gameObject.layer.Equals("Wall"))
+        else if (LayerMask.LayerToName(collision.gameObject.layer) == "Wall")
         {
-            Vector3 reflection = Vector3.Reflect(transform.forward, transform.InverseTransformDirection(collision.GetContact(0).normal));
+            Vector3 worldForward = (transform.forward);
+            Vector3 reflection = Vector3.Reflect(worldForward, collision.GetContact(0).normal);
             transform.rotation = Quaternion.LookRotation(reflection);
         }
         else if (collision.gameObject.layer.Equals("Goal"))
         {
             transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-            rb.AddForce(new Vector3(Random.Range(0.0f, 1.0f), 0.0f, Random.Range(0.0f, 1.0f) * constantSpeed), ForceMode.Impulse); speed = constantSpeed;
+           // rb.AddForce(new Vector3(Random.Range(0.0f, 1.0f), 0.0f, Random.Range(0.0f, 1.0f) * constantSpeed), ForceMode.Impulse); speed = constantSpeed;
         }
     }
 }
