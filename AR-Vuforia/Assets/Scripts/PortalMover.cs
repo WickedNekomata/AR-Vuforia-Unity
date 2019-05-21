@@ -31,7 +31,7 @@ public class PortalMover : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (LayerMask.LayerToName(collision.gameObject.layer) == "Obstacle")
+        if (LayerMask.LayerToName(collision.gameObject.layer) == "Wall")
         {
             // Change direction
             switch (direction)

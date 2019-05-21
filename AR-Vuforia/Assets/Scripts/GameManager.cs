@@ -72,12 +72,12 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 redPortal.direction = PortalMover.Direction.Left;
-                bluePortal.direction = PortalMover.Direction.Right;
+                bluePortal.direction = PortalMover.Direction.Left;
                 break;
 
             case 1:
                 redPortal.direction = PortalMover.Direction.Right;
-                bluePortal.direction = PortalMover.Direction.Left;
+                bluePortal.direction = PortalMover.Direction.Right;
                 break;
         }
     }
