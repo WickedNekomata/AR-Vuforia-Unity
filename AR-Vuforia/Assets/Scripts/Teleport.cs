@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    public GameObject map = null;
+    public GameObject mapImageTarget = null;
     public GameObject bulletPrefab = null;
-    public GameObject otherPortal = null;
+    public GameObject otherPortalGameObject = null;
 
     void OnTriggerEnter(Collider collider)
     {
@@ -14,7 +14,7 @@ public class Teleport : MonoBehaviour
         {
             // Teleport the bullet the other portal
             Destroy(collider.gameObject);
-            Instantiate(bulletPrefab, otherPortal.transform.position, otherPortal.transform.rotation, map.transform);
+            Instantiate(bulletPrefab, otherPortalGameObject.transform.position, otherPortalGameObject.transform.rotation, mapImageTarget.transform);
         }
     }
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class BulletMover : MonoBehaviour
 {
     #region PUBLIC_VARIABLES
+    [HideInInspector]
     public float speed = 5.0f;
+    [HideInInspector]
     public float lifeTime = 5.0f;
     #endregion
 

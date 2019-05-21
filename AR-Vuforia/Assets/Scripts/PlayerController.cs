@@ -4,21 +4,52 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float angularVelocity = 1000.0f;
+    #region PUBLIC_VARIABLES
+    public float angularVelocity = 50.0f;
+    public float maxAngle = 45.0f;
 
-    public GameObject map = null;
+    public GameObject mapImageTarget = null;
     public GameObject bulletPrefab = null;
+    #endregion
+
+    #region PRIVATE_VARIABLES
+    private float accumulatedAngularVelocity = 0.0f;
+    #endregion
 
     void Update()
     {
         // Instantiate bullet
         if (Input.GetKeyDown(KeyCode.Space))
-            Instantiate(bulletPrefab, transform.position, transform.rotation, map.transform);
+            Instantiate(bulletPrefab, transform.position, transform.rotation, mapImageTarget.transform);
 
         // Move turret
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            float angle = angularVelocity * Time.deltaTime;
+
+            if (accumulatedAngularVelocity + angle > maxAngle)
+                angle = maxAngle - accumulatedAngularVelocity;
+
+            if (angle > 0.0f)
+            {
+                accumulatedAngularVelocity += angle;
+
+                transform.rotation *= Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+        }
         if (Input.GetKey(KeyCode.LeftArrow))
-            transform.rotation *= Quaternion.AngleAxis(angularVelocity * Time.deltaTime, Vector3.up);
-        else if (Input.GetKey(KeyCode.RightArrow))
-            transform.rotation *= Quaternion.AngleAxis(angularVelocity * Time.deltaTime, -Vector3.up);
+        {
+            float angle = -angularVelocity * Time.deltaTime;
+
+            if (accumulatedAngularVelocity + angle < -maxAngle)
+                angle = -maxAngle - accumulatedAngularVelocity;
+
+            if (angle < 0.0f)
+            {
+                accumulatedAngularVelocity += angle;
+
+                transform.rotation *= Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+        }
     }
 }
