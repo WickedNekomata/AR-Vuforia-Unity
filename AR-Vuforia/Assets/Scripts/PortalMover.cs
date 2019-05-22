@@ -14,7 +14,7 @@ public class PortalMover : MonoBehaviour
     #endregion
 
     #region PRIVATE_VARIABLES
-    private float speed = 1.0f;
+    private float speed = 0.5f;
     private float time = 2.0f;
 
     private bool stop = false;

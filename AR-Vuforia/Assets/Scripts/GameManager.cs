@@ -6,11 +6,14 @@ public class GameManager : MonoBehaviour
     #region PUBLIC_VARIABLES
     public PortalMover redPortal = null;
     public PortalMover bluePortal = null;
+    public GameObject playGameObjects = null;
 
     public Text redPoints = null;
     public Text bluePoints = null;
     public Text redWins = null;
     public Text blueWins = null;
+
+    public GameObject gameOverButton = null;
 
     public uint winScore = 5;
 
@@ -27,6 +30,9 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Red wins!");
                 redWins.gameObject.SetActive(true);
+
+                playGameObjects.SetActive(false);
+                gameOver = true;
             }
         }
     }
@@ -43,6 +49,9 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Blue wins!");
                 blueWins.gameObject.SetActive(true);
+
+                playGameObjects.SetActive(false);
+                gameOver = true;
             }
         }
     }
@@ -56,6 +65,10 @@ public class GameManager : MonoBehaviour
     #region PRIVATE_VARIABLES
     private uint redScore = 0;
     private uint blueScore = 0;
+    private float time = 5.0f;
+
+    private float timer = 0.0f;
+    private bool gameOver = false;
 
     private static GameManager gameManager = null;
     #endregion
@@ -79,6 +92,25 @@ public class GameManager : MonoBehaviour
                 redPortal.direction = PortalMover.Direction.Right;
                 bluePortal.direction = PortalMover.Direction.Right;
                 break;
+        }
+    }
+
+    private void Update()
+    {
+        if (gameOver)
+        {
+            if (timer >= time)
+            {
+                blueWins.gameObject.SetActive(false);
+                redWins.gameObject.SetActive(false);
+
+                gameOverButton.SetActive(true);
+
+                timer = 0.0f;
+                gameOver = false;
+            }
+
+            timer += Time.deltaTime;
         }
     }
 }
