@@ -75,6 +75,8 @@ public class PortalMover : MonoBehaviour
         {
             stop = true;
             BulletMover.Call.gameObject.SetActive(false);
+
+            AudioManager.Call.PlayPortalIn();
         }
     }
 
@@ -84,5 +86,7 @@ public class PortalMover : MonoBehaviour
         BulletMover.Call.gameObject.transform.position = spawnPoint.transform.position;
         BulletMover.Call.gameObject.transform.rotation = Quaternion.LookRotation(spawnPoint.transform.forward);
         BulletMover.Call.speed += BulletMover.Call.increaseOverBound * 2.0f;
+
+        AudioManager.Call.PlayPortalOut();
     }
 }

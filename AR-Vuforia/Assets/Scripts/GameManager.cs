@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
                 playGameObjects.SetActive(false);
                 gameOver = true;
+
+                AudioManager.Call.PlayWin();
             }
         }
     }
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
 
                 playGameObjects.SetActive(false);
                 gameOver = true;
+
+                AudioManager.Call.PlayWin();
             }
         }
     }

@@ -39,16 +39,21 @@ public class BulletMover : MonoBehaviour
         if (LayerMask.LayerToName(collision.gameObject.layer) == "Player")
         {
             speed += increaseOverBound;
+
             Vector3 worldForward = (transform.forward);
             Vector3 reflection = Vector3.Reflect(worldForward, collision.GetContact(0).normal);
             
             transform.rotation = Quaternion.LookRotation((reflection));
+
+            AudioManager.Call.PlayPaddle();
         }
         else if (LayerMask.LayerToName(collision.gameObject.layer) == "Wall")
         {
             Vector3 worldForward = (transform.forward);
             Vector3 reflection = Vector3.Reflect(worldForward, collision.GetContact(0).normal);
             transform.rotation = Quaternion.LookRotation(reflection);
+
+            AudioManager.Call.PlayWall();
         }
         else if (LayerMask.LayerToName(collision.gameObject.layer) == "Goal")
         {
@@ -58,7 +63,8 @@ public class BulletMover : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(wall1.transform.position - transform.position);
             else
                 transform.rotation = Quaternion.LookRotation(wall2.transform.position - transform.position);
-            // rb.AddForce(new Vector3(Random.Range(0.0f, 1.0f), 0.0f, Random.Range(0.0f, 1.0f) * constantSpeed), ForceMode.Impulse); speed = constantSpeed;
+
+            AudioManager.Call.PlayScore();
         }
     }
 }
