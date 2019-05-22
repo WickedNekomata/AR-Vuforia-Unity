@@ -82,7 +82,7 @@ public class PortalMover : MonoBehaviour
     private void Teleport()
     {
         BulletMover.Call.gameObject.transform.position = spawnPoint.transform.position;
-        BulletMover.Call.gameObject.transform.rotation = Quaternion.LookRotation(-BulletMover.Call.transform.forward);
+        BulletMover.Call.gameObject.transform.rotation = Quaternion.LookRotation(spawnPoint.transform.forward);
         BulletMover.Call.speed += BulletMover.Call.increaseOverBound * 2.0f;
     }
 }
